@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Getting Started with Chart JS with www.chartjs3.com</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        width: 100vw;
+        height: 40px;
+        background: #1A1A1A;
+        color: rgb(9, 67, 53);
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+      .chartCard {
+        width: 100vw;
+        height: calc(100vh - 40px);
+        background: rgba(255, 26, 104, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 80%;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgb(12, 79, 68);
+        background: rgb(255, 255, 255);
+      }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <div class="chartMenu">
+      <p>Gnatt Chart view of project</p>
+    </div>
+    <div class="chartCard">
+      <div class="chartBox">
+        <canvas id="myChart"></canvas>
+        <input type="month" onchange="chartFilter(this)" />
+      </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js" integrity="sha512-R/QOHLpV1Ggq22vfDAWYOaMd5RopHrJNMxi8/lJu8Oihwi4Ho4BRFeiMiCefn9rasajKjnx9/fTQ/xkWnkDACg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+const colours = ['rgba(255, 26, 104, 1)', 'rgba(255, 159, 64, 1)', 'rgba(75, 192, 192, 1)'];
+
+    // setup 
+    const data = {
+      
+      datasets: [{
+        label: 'Projected Time',
+        data: [ 
+          {x: ['2022-01-01', '2022-04-01'], y: 'Task 1', name: 'james', status:2 },
+          {x: ['2022-04-01', '2022-07-01'], y: 'Task 2', name: 'ravi', status:0 },
+          {x: ['2022-03-01', '2022-05-31'], y: 'Task 3', name: 'kiran', status:2 },
+          {x: ['2022-06-01', '2022-07-30'], y: 'Task 4', name: 'joey', status:0 },
+          {x: ['2022-06-11', '2022-08-11'], y: 'Task 5', name: 'ross', status:1 },
+          {x: ['2022-07-01', '2022-11-01'], y: 'Task 6', name: 'leela', status:2 },
+          {x: ['2022-09-01', '2022-11-30'], y: 'Task 7', name: 'chandler', status:0 },
+          {x: ['2022-10-01', '2022-12-01'], y: 'Task 8', name: 'john', status:1 }
+        ],
+        taskCompleted: [100, 100, 100, 100, 100, 100, 100, 100],
+        backgroundColor: (ctx) => {
+          return colours[ctx.raw.status]
+        },
+      //'rgba(54, 162, 235, 2)',
+        //'rgba(255, 206, 86, 2)',
+        //'rgba(75, 192, 192, 2)',
+        //'rgb(27, 79,114)',
+        //'rgba(255, 159, 64, 2)'
+       // borderColor: 'rgba(0, 0, 0, 1)',
+        //borderWidth: 1,
+        borderRadius:10,
+        borderSkipped: false,
+        barPercentage: 0.5
+      },
+      {
+        label: 'Actual Time',
+        data: [
+          ['2022-01-01', '2022-04-01'],
+          ['2022-04-01', '2022-07-15'],
+          ['2022-03-01', '2022-05-31'],
+          ['2022-06-01', '2022-10-30'],
+          ['2022-10-01', '2022-12-01'],
+          ['2022-07-01', '2022-11-01'],
+          ['2022-09-01', '2022-12-03'],
+          ['2022-10-01', '2022-12-18'],
+        ],
+        taskCompleted: [100, 80, 75, 100, 100, 100, 90, 100],
+        backgroundColor: 'RGB(234,237,237)' ,
+        //borderColor: 'black',
+        //borderWidth: 1,
+        borderRadius:10,
+        borderSkipped: false,
+        barPercentage: 0.5
+      }]
+    };
+
+    // todayLine plugin block
+    const todayLine = {
+      id: 'todayLine',
+      afterDatasetsDraw(chart, args, pluginOptions) {
+        const { ctx, data, chartArea: { top, bottom, left, right }, scales: { x, y } } = chart;
+
+        ctx.save();
+
+        ctx.beginPath();
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = 'rgba(102, 102, 102, 1)';
+        ctx.setLineDash([6, 6]);
+        ctx.moveTo(x.getPixelForValue(new Date()), top);
+        ctx.lineTo(x.getPixelForValue(new Date()), bottom);
+        ctx.stroke();
+        ctx.restore();
+
+        ctx.setLineDash([]);
+
+        ctx.beginPath();
+        ctx.lineWidth = 1; 
+        ctx.strokeStyle = 'rgba(102, 102, 102, 1)';
+        ctx.fillStyle = 'rgba(102, 102, 102, 1)';
+        ctx.moveTo(x.getPixelForValue(new Date()), top + 3);
+        ctx.lineTo(x.getPixelForValue(new Date()) - 6, top - 6);
+        ctx.lineTo(x.getPixelForValue(new Date()) + 6, top - 6);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.fill();
+        ctx.restore();
+
+        ctx.font = 'bold 12px sans-serif';
+        ctx.fillStyle = 'rgba(102, 102, 102, 1)';
+        ctx.textAlign = 'center';
+        ctx.fillText('Today', x.getPixelForValue(new Date()), bottom + 15);
+        ctx.restore();
+
+      }
+    }
+
+    // status plugin block
+    const status = {
+      id: 'status',
+      afterDatasetsDraw(chart, args, pluginOptions) {
+        const { ctx, data, options, chartArea: { top, bottom, left, right }, scales: { x, y } } = chart;
+
+        const icons = ['\uf00d', '\uf110', '\uf00c'];
+        const angle = Math.PI / 180;
+        const paddingRight = options.layout.padding.right;
+
+        ctx.save();
+        ctx.font = 'bolder 12px FontAwesome';
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'center';
+        data.datasets[0].data.forEach((datapoint, index) => {
+          ctx.beginPath();
+          ctx.fillStyle = colours[datapoint.status];
+          ctx.arc(right + (paddingRight / 2), y.getPixelForValue(index), 12, 0, angle * 360, false);
+          ctx.closePath();
+          ctx.fill();
+          ctx.fillStyle = 'white';
+          ctx.fillText(icons[datapoint.status], right + (paddingRight / 2), y.getPixelForValue(index));
+        });
+
+        ctx.font = 'bolder 12px sans-serif';
+        ctx.fillStyle = 'black';
+        ctx.fillText('Status', right + (paddingRight / 2), top - 15);
+        ctx.restore();
+
+        console.log()
+
+      }
+    }
+
+    // assignedTasks plugin block
+    const assignedTasks = {
+      id: 'assignedTasks',
+      afterDatasetsDraw(chart, args, pluginOptions) {
+        const { ctx, data, chartArea: { top, bottom, left, right }, scales: { x, y } } = chart;
+        ctx.save();
+        ctx.font = 'bolder 12px sans-serif';
+        ctx.fillStyle = 'black';
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'left';
+        data.datasets[0].data.forEach((datapoint, index) => {
+          ctx.fillText(datapoint.name, 10, y.getPixelForValue(index));
+        })
+        ctx.fillText('Names', 10, top - 15);
+        ctx.restore();
+      }
+    }
+
+
+
+    // config 
+    const config = {
+      type: 'bar',
+      data,
+      options: {
+        layout: {
+          padding: {
+            left: 100,
+            right:100,
+            bottom: 20
+          }
+        },
+        
+        indexAxis: 'y',
+        scales: {
+          x:{
+            offset: false,
+            min: '2022-12-01',
+            max: '2022-12-31',
+            position: 'top',
+            type: 'time',
+            time: {
+              //unit: 'day'
+              displayFormats: {
+                day: 'dd'
+              }
+            },
+            ticks: {
+              align: 'start'
+            },
+            grid: {
+              borderDash: [5, 5]
+            },
+          
+            
+          },
+          y: {
+            beginAtZero: true
+          },
+        },
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            displayColors: false,
+            yAlign: 'bottom',
+            callbacks: {
+              label: (ctx) => {
+                return '';
+              },
+              title: (ctx) => {
+                console.log(ctx[0])
+                const startDate = new Date(ctx[0].raw.x[0])
+                const endDate = new Date(ctx[0].raw.x[1])
+                const formattedStartDate = startDate.toLocaleString([], {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                });
+                const formattedEndDate = endDate.toLocaleString([], {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                });
+                return [ctx[0].raw.name, `Task Deadline: ${formattedStartDate} - ${formattedEndDate}`];
+              }
+            }
+          }
+        }
+      },
+      plugins: [todayLine, assignedTasks, status]
+    };
+//chartDataLabels
+    // render init block
+    const myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+
+    function chartFilter(date) {
+      const year = date.value.substring(0, 4);
+      const month = date.value.substring(5, 7)
+      const lastDay = (y, m) => {
+        return new Date(y, m, 0).getDate();
+      }
+
+      const startDate = `${year}-${month}-01`;
+      const endDate = `${year}-${month}-${lastDay(year, month)}`;
+
+      myChart.config.options.scales.x.min = startDate;
+      myChart.config.options.scales.x.max = endDate;
+      myChart.update();
+
+    }
+    </script>
+
+  </body>
+</html>

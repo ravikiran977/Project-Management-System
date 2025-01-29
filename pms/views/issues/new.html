@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create New Issue / Task</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./main.css">
+
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar  -->
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Project Management System</h3>
+            </div>
+
+            <ul class="list-unstyled components">
+
+                <li >
+                    <a href="../create Project/project.html"><i class="fas fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Home</a>
+                </li>
+
+                <li class="active">
+                    <a href="../boards/dashboard.html"><i class="fas fa-cube" aria-hidden="true"></i>&nbsp;&nbsp;Kanban</a>
+                </li>
+                
+                <li>
+                    <a href="../issues/new.html"> <i class="fas fa-file" aria-hidden="true"></i>&nbsp; New Task / Issue</a>
+                </li>
+
+                <li>
+                    <a href="../boards/create_new_db.html"> <i class="fas fa-clipboard" aria-hidden="true"></i>&nbsp; New Board</a>
+                </li>
+
+                <li>
+                    <a href="../reports/report.html"><i class="fas fa-chart-pie" aria-hidden="true"></i>
+                        &nbsp;
+                        Report</a>
+                </li>
+
+                <li>
+
+                    <a href="../settings/settings.html"> <i class="fas fa-cogs" aria-hidden="true"></i> &nbsp;&nbsp; Settings</a>
+                </li>
+
+                <li>
+
+                    <a href="../users/userdetails.html"> <i class="fas fa-user-circle" aria-hidden="true"></i>&nbsp;&nbsp; My Profile</a>
+                </li>
+
+                <li>
+
+                    <a href="../login/login.html">
+                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i> &nbsp;&nbsp; Logout
+                    </a>
+                </li>
+            </ul>
+
+        </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="btn btn-info btn-dark ">
+                        <i class="fas fa-align-left"></i>
+                        <span>Menu</span>
+                    </button>
+                </div>
+            </nav>
+
+
+
+            <div class="main" align="center">
+                <h1>New Issue/Task</h1>
+                <a href="../boards/dashboard.html" id="back-link">Back</a><br><br><br>
+                <form action="./show.html" class="form-input">
+                    <table>
+                        <tr>
+                            <div class="form-group">
+                                <td>
+                                    <label for="title">Task Name &nbsp;&nbsp;</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="title" name="title" required />
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <div class="form-group">
+                                <td>
+                                    <label for="title">Description &nbsp;&nbsp;</label>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="title" name="title" required />
+                                </td>
+                            </div>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <div class="form-group">
+                                <td>
+                                    <label for="type">Issue type</label>
+                                </td>
+                                <td> 
+                                    <select name="type" class="form-control short" id="type">
+                                    <option value="select value">
+                                        Select one
+                                    </option>
+                                    <option value="Story">
+                                         Story
+                                    </option>
+                                    <option value="Task">
+                                            Task
+                                    </option>
+                                    <option value="Bug">
+                                           Bug
+                                    </option>
+                                     <option value="Epic">
+                                           Epic
+                                    </option>
+                                    </select>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <div class="form-group">
+                                 <td>
+                                    <label for="type">Issue Category</label>
+                                </td>
+                                <td>
+                                    <select name="type" class="form-control short" id="type">
+                                        <option value="select value">
+                                            Select one
+                                        </option>
+                                        <option value="todo">
+                                            To-do
+                                        </option>
+                                        <option value="inprogress">
+                                            In Progress
+                                        </option>
+                                        <option value="codereview">
+                                            Code Review
+                                        </option>
+                                        <option value="intesting">
+                                            In-Testing
+                                        </option>
+                                        <option value="done">
+                                            Done
+                                        </option>
+                                    </select>
+                                </td>
+                            </div>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <br>
+                            </td>
+                        </tr>
+
+
+                        <tr>
+                            <div class="form-group">
+                                <td>
+                                    <label for="priority">Priority</label>
+                                </td>
+                                <td>
+                                    <select name="priority" class="form-control short" id="priority">
+                                    <option value="select value">
+                                        Select one
+                                    </option>
+						            <option value="Highest" >
+						            	Highest
+						            </option>
+                                    <option value="Highest" >
+						            	High
+						            </option>
+                                    <option value="Highest" >
+						            	Medium
+						            </option>
+                                    <option value="Highest" >
+						            	Low
+						            </option>
+                                    <option value="Highest" >
+							            Lowest
+						            </option>
+                                    </select>
+                                </td>
+                            </div>
+                        </tr>
+
+
+                        <tr>
+                            <td>
+                                <br>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <div class="form-group">
+                                <td>
+                                    <label for="storyPoints">Story points</label>
+                                </td>
+                                <td>
+
+                                    <input type="number" class="form-control shorter" id="storyPoints" name="storyPoints" min="0" />
+                                </td>
+                            </div>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <br>
+                            </td>
+                        </tr>
+                        <tr> 
+                            <div class="form-group">
+                                <td>
+                                    <label for="start-date">Start Date</label>
+                                </td>
+                                <td>
+                                    <input id="start-date" type="date" name="start-date" minlength="1" maxlength="64" placeholder=" " autocomplete="nope" required="required"></input>
+                                    <span class="bar"></span>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <td>
+                                <br>
+                            </td>
+                        </tr>
+                        <tr> 
+                            <div class="form-group">
+                                <td>
+                                    <label for="end-date">End Date</label>
+                                </td>
+                                <td>
+                                    <input id="end-date" type="date" name="end-date" minlength="1" maxlength="64" placeholder=" " autocomplete="nope" required="required"></input>
+                                    <span class="bar"></span>
+                                </td>
+                            </div>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="2">
+
+                                <input class="btn btn-dark btn-lg flat-button" type="submit" data-dismiss="modal" value="Submit" />
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $("#exampleModalCenter").modal();
+                });
+    
+                $(document).ready(
+                    $('#add_task').click(
+                        function() {
+    
+    
+                            var temp = $("#new_task_form").serializeArray();
+                            var desc, taskType;
+                            $.each(temp, function(i, fieldName) {
+                                if (fieldName.name == "title")
+                                    desc = fieldName.value;
+    
+                                if (fieldName.name == "type")
+                                    taskType = fieldName.value;
+                            });
+    
+                            if (taskType == 'todo') {
+                                var newItem = $('<div class="todo-item list-item card" draggable="true"> <section> <p>' + desc + ' </p> <span style="background-color: orange;box-sizing: content-box; border-radius: 7px; align-content: center;">Space traval partner </span> <br> <br> <i class="fas fa-bookmark" aria-hidden="true" style="color: orangered;"></i> <i class="fas fa-arrow-up" aria-hidden="true" style="color: brown;"></i> <i class="fas fa-sort-up" aria-hidden="true" style="color:gray;"></i> <span style="background-color: white; float: right;">TS-129</span> <i class="fas fa-user" aria-hidden="true" style="float: right;"></i> </section> </div>');
+                                $('#todo-list').append(newItem);
+                                var count = $('#todo-count').html();
+                                console.log(count);
+                                var intCount = parseInt(count);
+                                intCount++;
+                                console.log(intCount);
+                                $('#todo-count').text(intCount.toString());
+                                $('#task_modal').modal('hide');
+                            } else if (taskType == 'inprogress') {
+                                var newItem = $('<div class="Inprogress-item list-item card" draggable="true"> <section> <p>' + desc + ' </p> <span style="background-color: rgb(0, 153, 255); box-sizing: content-box; border-radius: 7px; align-content: center;"> Space traval partner </span> <br> <br> <i class="fas fa-check-circle" aria-hidden="true" style="color: orange;"></i> <i class="fas fa-snowflake" aria-hidden="true" style="color: green;"></i> <i class="fas fa-sort-up" aria-hidden="true" style="color:gray;"></i> <span style="background-color: white; float: right;">TS-134</span> <i class="fa fa-user" aria-hidden="true" style="float: right;"></i> </section> </div>');
+                                $('#inprogress-list').append(newItem);
+                                var count = $('#inprogress-count').html();
+                                console.log(count);
+                                var intCount = parseInt(count);
+                                intCount++;
+                                console.log(intCount);
+                                $('#inprogress-count').text(intCount.toString());
+                                $('#task_modal').modal('hide');
+                            } else if (taskType == 'codereview') {
+                                var newItem = $('<div class="codereview-item list-item card" draggable="true"> <section> <p> ' + desc + '</p> <span style="background-color: rgb(158, 104, 211); box-sizing: content-box; border-radius: 7px; align-content: center;"> Space traval partner </span> <br> <br> <i class="fa fa-list-alt" aria-hidden="true"></i> <i class="fa fa-snowflake" aria-hidden="true" style="color: green;"></i> <i class="fa fa-sort-up" aria-hidden="true" style="color:gray;"></i> <span style="background-color: white; float: right;">TS-130</span> <i class="fa fa-user" aria-hidden="true" style="float: right;"></i> </section> </div>');
+                                $('#codereview-list').append(newItem);
+                                var count = $('#codereview-count').html();
+                                console.log(count);
+                                var intCount = parseInt(count);
+                                intCount++;
+                                console.log(intCount);
+                                $('#codereview-count').text(intCount.toString());
+                                $('#task_modal').modal('hide');
+                            } else if (taskType == 'intesting') {
+                                var newItem = $('<div class="intesting-item list-item card" draggable="true"> <section> <p> ' + desc + ' </p> <span style="background-color: yellow; box-sizing: content-box; border-radius: 7px; align-content: center;"> Space traval partner </span> <br> <br> <i class="fa fa-search-minus" aria-hidden="true" style="color:rgb(31, 28, 204);"></i> <i class="fa fa-snowflake" aria-hidden="true" style="color: green;"></i> <i class="fa fa-sort-down" aria-hidden="true" style="color:gray;"></i> <span style="background-color: white; float: right;">TS-130</span> <i class="fa fa-user" aria-hidden="true" style="float: right;"></i> </section> </div>');
+                                $('#intesting-list').append(newItem);
+                                var count = $('#intesting-count').html();
+                                console.log(count);
+                                var intCount = parseInt(count);
+                                intCount++;
+                                console.log(intCount);
+                                $('#intesting-count').text(intCount.toString());
+                                $('#task_modal').modal('hide');
+                            } else {
+                                var newItem = $('<div class="done-item list-item card" draggable="true"> <section> <p> ' + desc + ' </p> <span style="background-color: yellowgreen; box-sizing: content-box; border-radius: 7px; align-content: center;"> Space traval partner </span> <br> <br> <i class="fa fa-check-circle" aria-hidden="true" style="color: darkgreen;"></i> <i class="fa fa-snowflake" aria-hidden="true" style="color: green;"></i> <i class="fa fa-sort-up" aria-hidden="true" style="color:gray;"></i> <span style="background-color: white; float: right;">TS-130</span> <i class="fa fa-user" aria-hidden="true" style="float: right;"></i> </section> </div>');
+                                $('#done-list').append(newItem);
+                                var count = $('#done-count').html();
+                                console.log(count);
+                                var intCount = parseInt(count);
+                                intCount++;
+                                console.log(intCount);
+                                $('#done-count').text(intCount.toString());
+                                $('#task_modal').modal('hide');
+                            }
+    
+                        }
+                    )
+                );
+            </script>
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#sidebar").mCustomScrollbar({
+                        theme: "minimal"
+                    });
+
+                    $('#sidebarCollapse').on('click', function() {
+                        $('#sidebar, #content').toggleClass('active');
+                        $('.collapse.in').toggleClass('in');
+                        $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+                    });
+                });
+            </script>
+</body>
+
+</html>
