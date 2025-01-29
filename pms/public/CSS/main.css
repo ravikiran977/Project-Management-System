@@ -775,7 +775,7 @@ img {
 }
 
 .settings-container .right-side {
-    padding-left: 5px;
+    padding-left: 15px;
 }
 
 .settings-container .right-side .mega-menu {
@@ -885,14 +885,15 @@ img {
 
 .hug-hero .left-side h1 {
     font-family: 'parmapetitregular';
-    font-size: 7em;
+    font-size: 6.8em;
     text-transform: uppercase;
     color: #595d5d;
     line-height: .9;
 }
 
 .mascot {
-    max-width: 475px;
+    max-width: 505px;
+    margin-left: 200px;
 }
 
 .hug-skyline {
@@ -960,25 +961,65 @@ img {
 
 .hug-info {
     color: #26b2ad;
-    padding-bottom: 290px;
+    padding-bottom: 150px; /* Reduced padding for better spacing */
     position: relative;
     background-color: #fff;
     background-image: url("/assets/img/oval_bg.png");
     background-repeat: no-repeat;
     background-position: right 0 bottom 0;
     background-size: contain;
+    text-align: center; /* Ensure text is centered */
 }
 
 .hug-info h2 {
     font-family: 'Lobster', cursive;
-    font-size: 7em;
+    font-size: 4em; /* Reduced font size for better fit */
     text-transform: capitalize;
-    margin-top: -90px;
+    margin-top: 50px; /* Adjusted margin for better spacing */
+    margin-bottom: 40px; /* Added margin to separate h2 and h3 */
 }
 
 .hug-info h3 {
-    font-size: 3em;
+    color: #26b2ad;
+    font-size: 1.8em; /* Reduced font size for better readability */
+    margin: 20px auto; /* Added margin for spacing between h3 elements */
+    max-width: 800px; /* Limit width for better readability */
+    line-height: 1.5; /* Improved line height for better spacing */
 }
+.hug-info p {
+    color: #2b3434;
+    font-size: 1.8em; /* Reduced font size for better readability */
+    margin: 20px auto; /* Added margin for spacing between h3 elements */
+    max-width: 800px; /* Limit width for better readability */
+    line-height: 1.5; /* Improved line height for better spacing */
+}
+
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    .hug-info h2 {
+        font-size: 3em; /* Smaller font size for mobile */
+        margin-top: 30px;
+        margin-bottom: 20px;
+    }
+
+    .hug-info h3 {
+        font-size: 1.5em; /* Smaller font size for mobile */
+        margin: 15px auto;
+        max-width: 90%; /* Allow more width on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .hug-info h2 {
+        font-size: 2.5em; /* Even smaller font size for very small screens */
+    }
+
+    .hug-info h3 {
+        font-size: 1.2em; /* Smaller font size for very small screens */
+    }
+}
+
 
 .hug-info .row img {
     max-width: 100px;
