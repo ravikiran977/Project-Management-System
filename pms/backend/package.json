@@ -7,7 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "aut   hor": "Ravi Kiran",
-    "lic     ense": "COV",
+    "lic     ense": "MIT",
     "dep  endencies": {
         "b   ody-parser": "^1.19.0",
         "exp       ress": "^4.17.1",
